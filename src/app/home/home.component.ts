@@ -9,16 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent  {
-  constructor(private BookService:BookService ,private router :Router){}
   tableData=this.BookService.ListBook;
+  searchResults:Book[]=this.tableData;
+  searchTerm: string = 'Search';
 
-  editLivre(isbn:number){
-    this.router.navigate(['/EditBook/'+isbn]);
+  constructor(private BookService:BookService ,private router :Router){}
+
+  editLivre(book:Book){
+    this.router.navigate(['/EditBook/'+book.isbn]);
   }
 
   deleteLivre(book:Book){
     this.BookService.deleteLivre(book);
 
+  }
+  search() {
+    this.searchResults = this.tableData.filter(book => {
+      return book.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
   }
 };
 

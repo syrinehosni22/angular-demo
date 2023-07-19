@@ -9,21 +9,24 @@ import { BookService } from '../services/book.service';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent {
-   book:Book|undefined;
+  book: any = {}; // Initialize book as an empty object or with default values
 constructor(private actRoute : ActivatedRoute, private router : Router,private BookService :BookService){}
 
 ngOnInit() {
   
-  this.actRoute.paramMap.subscribe(
-    {
-      next : (p : ParamMap) => {
-        this.book = this.BookService.getBookById( Number(p.get("id")));
-      }
-    }
-  )
+  this.actRoute.paramMap.subscribe(params => {
+    // Obtenez l'ID à partir des paramètres de l'URL
+    const id = params.get('bookId');
+    
+    // Faites ce que vous voulez avec l'ID, par exemple, affichez-le dans la console
+    console.log('ID extrait depuis l\'URL :', id);
+    this.book=this.BookService.getBookById(Number(id))
+   
+  });
 
 }
 EditBook(uBook:Book){
-
+this.BookService.updateBook(this.book);
+this.router.navigate(['/Home'])
 }
 }
