@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="mt-4">
+  <h2>Listes des Livres</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ISBN</th>
+        <th scope="col">Title</th>
+        <th scope="col">Auteur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livre of tableData">
+        <td>{{ livre.isbn }}</td>
+        <td>{{ livre.title }}</td>
+        <td>{{ livre.auteur }}</td>
+        <td>
+          <button (click)="editLivre(livre.isbn)">Edit</button>
+        </td>
+        <td>
+          <button (click)="deleteLivre(livre)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>

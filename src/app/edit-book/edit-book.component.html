@@ -1,1 +1,10 @@
-<p>edit-book works!</p>
+<h2>Modifier un livre</h2>
+<form #f="ngForm">
+      <label for="">isbn</label>
+      <input type="text" [(ngModel)]="book?.isbn" class="form-control" ngModel name="isbn" >
+      <label for=""> title</label>
+      <input type="text" [(ngModel)]="book?.title" class="form-control" ngModel name="title">
+      <label for=""> auteur</label>
+      <input type="text" [(ngModel)]="book?.auteur" class="form-control" ngModel name="auteur" >
+      <button class="btn btn-primary" type="submit" (click)="EditBook(f.value)">Edit</button>
+  </form>
