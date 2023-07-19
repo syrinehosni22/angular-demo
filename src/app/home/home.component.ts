@@ -23,6 +23,7 @@ export class HomeComponent  {
     this.BookService.deleteLivre(book);
 
   }
+  // serch by title
   search() {
     this.searchResults = this.tableData.filter(book => {
       return book.title.toLowerCase().includes(this.searchTerm.toLowerCase());
